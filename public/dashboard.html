@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Gestión de Empleados</title>
+  <!-- Vinculamos Bootstrap y Font Awesome -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+  <style>
+    /* Estilos adicionales */
+    body {
+      background-color: #f4f7fc;
+    }
+    .dashboard-header {
+      background-color: #007bff;
+      color: white;
+      padding: 20px;
+      border-radius: 5px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .logout-btn {
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .logout-btn:hover {
+      background-color: #c82333;
+    }
+    .card {
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Barra de navegación -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">Gestión de Empleados</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="/dashboard">Dashboard</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/logout" id="logout">Cerrar sesión</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-5">
+    <!-- Encabezado del Dashboard -->
+    <div class="dashboard-header text-center">
+      <h1>Bienvenido al Dashboard</h1>
+      <p>Hola, <span id="user-name">Usuario</span>!</p>
+    </div>
+
+    <div class="row mt-4">
+      <!-- Sección de estadísticas o tarjetas -->
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h5 class="card-title">Empleados Activos</h5>
+            <p class="card-text">Número total de empleados activos en la empresa.</p>
+            <h3 class="text-center">125</h3>
+            <i class="fas fa-users fa-3x d-block text-center"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h5 class="card-title">Proyectos Activos</h5>
+            <p class="card-text">Proyectos en curso y su progreso.</p>
+            <h3 class="text-center">15</h3>
+            <i class="fas fa-project-diagram fa-3x d-block text-center"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-4 col-md-6">
+        <div class="card shadow-lg">
+          <div class="card-body">
+            <h5 class="card-title">Tareas Pendientes.</h5>
+            <p class="card-text">Número de tareas por completar este mes.</p>
+            <h3 class="text-center">42</h3>
+            <i class="fas fa-tasks fa-3x d-block text-center"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Script de Bootstrap -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+  <script>
+    // Lógica para mostrar el nombre de usuario en el Dashboard
+    const userName = 'Juan Pérez'; // Esto debería venir dinámicamente desde el backend
+    document.getElementById('user-name').textContent = userName;
+
+    // Lógica para cerrar sesión
+    document.getElementById('logout').addEventListener('click', () => {
+      fetch('/logout', { method: 'POST' })
+        .then(() => {
+          window.location.href = '/login.html'; // Redirige al login después de cerrar sesión
+        })
+        .catch(err => console.error(err));
+    });
+  </script>
+
+</body>
+</html>
